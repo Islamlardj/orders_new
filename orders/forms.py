@@ -30,7 +30,8 @@ class CmdForm(forms.ModelForm):
 			'id' : 'product',
 			'class' : 'form-control ',
 			'placeholder': 'Nom de Produit',
-			'autofocus': 'True'
+			'autofocus': 'True',
+			'list' : 'products'
 
 			}),
 			'productype' : forms.Select(choices= CTR_CHOICES, attrs = {
@@ -45,3 +46,8 @@ class CmdForm(forms.ModelForm):
 				})
 
 		}
+
+# class addForm(forms.ModelForm):
+# 	class Meta:
+# 		model = Products
+# 		fields = ['product', 'ppa', "marge"]

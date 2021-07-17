@@ -21,15 +21,28 @@
 		
 		<div id="form" class="form">
 			<form method="POST" action="">{% csrf_token%}
-			{{form.as_p}}
-			<input type="submit" name="send" value="Envoyer" id="validbtn">
-			{% if messages %}
-			{% for message in messages%}
-				<p id="msg-1">{{message}}</p>
-			{% endfor%}
-			{% endif %}
+				<p>
+					{{form.product}}
+					<datalist id="products">
+						{% for prod in prods %}
+							<option value="{{prod.product}}">
+						{% endfor%}
+					</datalist>
+				</p>
+				<p>
+					{{form.productype}}
+				</p>
+				<p>
+					{{form.tags}}
+				</p>
+				<input type="submit" name="send" value="Envoyer" id="validbtn">
+				{% if messages %}
+				{% for message in messages%}
+					<p id="msg-1">{{message}}</p>
+				{% endfor%}
+				{% endif %}
 			</form>
-
+			<a href="{% url 'add' %} "><input type="submit" name="add" value="Ajouter Produit" id="add-btn"></a>
 		</div>
 		<div id="container" class="container">
 			<div id="medicament-container" class="medicament-container">

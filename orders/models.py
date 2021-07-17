@@ -10,3 +10,7 @@ class Commande(models.Model):
 	username = models.ForeignKey(User, on_delete=models.CASCADE)
 	tags = models.CharField(max_length=100)
 	completed = models.BooleanField(default= False)
+
+
+class Products(models.Model):
+		product = models.CharField(max_length=500)

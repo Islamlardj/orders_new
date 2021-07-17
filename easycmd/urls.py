@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from orders.views import easyCmd, manageItems, loginPage, logoutUser
+from orders.views import easyCmd, manageItems, loginPage, logoutUser, addProducts
 from django.contrib.auth import views as auth_views
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,4 +23,5 @@ urlpatterns = [
     path('manage/', manageItems, name="manageitems"),
     path('login', loginPage, name="login"),
     path('logout', logoutUser, name="logout"),
+    path('add', addProducts, name="add"),
 ]

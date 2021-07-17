@@ -51,7 +51,20 @@ img{
 	padding: 3px;
 
 }
+#form{
+	display: flex;
+}
+#add-btn{
+	margin-right: 35px;
+	border-radius: 7px;
+	padding: 10px;
+	height: 50px;
+	background-color: orange;
 
+}
+#add-btn:hover{
+	background-color: inherit;
+}
 .form form{
 	width: 100%;
 	margin: 10px auto;
