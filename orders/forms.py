@@ -1,5 +1,5 @@
 from django import forms
-from .models import Commande
+from .models import Commande, Products
 
 
 
@@ -47,7 +47,23 @@ class CmdForm(forms.ModelForm):
 
 		}
 
-# class addForm(forms.ModelForm):
-# 	class Meta:
-# 		model = Products
-# 		fields = ['product', 'ppa', "marge"]
+class addForm(forms.ModelForm):
+	class Meta:
+		model = Products
+		fields = ['product', 'tag', 'ppa','marge','pu']
+		CTR_CHOICES = (
+			('', ''),
+			('Médicament','Médicament'),
+			('Article','Article'),
+			('Autres','Autres'))
+
+		widgets ={
+			'product' : forms.TextInput(attrs={
+				'id' : 'prd',
+				'class' : 'input'
+				}),
+			'tag' : forms.Select(choices=CTR_CHOICES, attrs={
+				'id' : 'slctag',
+				'class' : 'input',
+				})
+		}

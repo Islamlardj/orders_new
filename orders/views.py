@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .forms import CmdForm
+from .forms import CmdForm, addForm
 from .models import Commande, Products
 import sys
 from django.http import HttpResponseRedirect
@@ -27,19 +27,21 @@ def easyCmd(request):
 		if form.is_valid():
 			get_prod_name = Commande.objects.filter(username=user_name).values_list('product', flat=True)
 			current_product = request.POST['product']
+			typeprod = Products.objects.filter(product=current_product).values_list('tag', flat=True)
+			print(typeprod)
+			sys.stdout.flush()
 			producs = []
 			for prod in get_prod_name:
 				producs.append(prod.replace(" ",""))
 
 			cu_prods = current_product.replace(" ","")
-			print(current_product,list(get_prod_name), products, cu_prods)
-			sys.stdout.flush()
 			if cu_prods in producs:
 				messages.error(request, current_product.upper() + ' exist deja ')
 				form = CmdForm()
 			if cu_prods not in producs:
 				instance = form.save(commit=False)
 				instance.username=user_name
+				instance.productype=typeprod[0]
 				instance.save()
 				get_mdc_count =Commande.objects.filter(productype='Médicament').filter(username=user_name).count()
 				get_art_count = Commande.objects.filter(productype='Article').filter(username=user_name).count()
@@ -97,9 +99,9 @@ def logoutUser(request):
 
 
 def addProducts(request):
-# 	form = addForm(request.POST or None)
-# 	if form.is_valid():
-# 		form.save()
-# 		form = addForm()
+	form = addForm(request.POST or None)
+	if form.is_valid():
+		form.save()
+		form = addForm()
 
 	return render(request, 'add.html', {'form' : form})
