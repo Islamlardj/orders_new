@@ -50,7 +50,7 @@ class CmdForm(forms.ModelForm):
 class addForm(forms.ModelForm):
 	class Meta:
 		model = Products
-		fields = ['product', 'tag', 'ppa','marge','pu']
+		fields = ['product', 'tag']
 		CTR_CHOICES = (
 			('', ''),
 			('Médicament','Médicament'),

@@ -15,6 +15,3 @@ class Commande(models.Model):
 class Products(models.Model):
 		product = models.CharField(max_length=500)
 		tag = models.CharField(max_length=50, default='Médicament')
-		ppa = models.DecimalField(decimal_places=2, max_digits=8, default=0)
-		marge = models.IntegerField(default=20)
-		pu = models.DecimalField(decimal_places=2, max_digits=8, default=0)
